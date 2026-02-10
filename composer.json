@@ -1,0 +1,22 @@
+{
+  "name": "modules/cross-sell",
+  "description": "Cross sell functionality for Lunar.",
+  "authors": [
+    {
+      "name": "Steliyan Stoyanov",
+      "homepage": "https://github.com/SteliyanPStoyanov"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Modules\\CrossSell\\": ""
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Modules\\CrossSell\\CrossSellServiceProvider"
+      ]
+    }
+  }
+}
