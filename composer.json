@@ -1,11 +1,11 @@
 {
   "name": "modules/cross-sell",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cross sell functionality for Lunar.",
   "authors": [
     {
       "name": "Steliyan Stoyanov",
-  "version": "1.0.0",
+  "version": "1.0.1",
       "homepage": "https://github.com/SteliyanPStoyanov"
     }
   ],

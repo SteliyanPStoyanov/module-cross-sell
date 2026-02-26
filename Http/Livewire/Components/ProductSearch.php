@@ -144,12 +144,14 @@ class ProductSearch extends Component
      */
     public function saveSelectedProducts(array $productIds): void
     {
+        $startPosition = $this->crossSell->count();
         $selectedProducts = ProductsIndexer::whereIn('product_id', $productIds)
             ->get()
-            ->map(function ($product) {
+            ->values()
+            ->map(function ($product, $index) use ($startPosition) {
                 return [
                     'id' => $product->product_id,
-                    'position' => $this->crossSell->count() + 1,
+                    'position' => $startPosition + $index + 1,
                 ];
             });
 
