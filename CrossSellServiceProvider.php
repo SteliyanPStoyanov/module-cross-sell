@@ -7,6 +7,7 @@ use Livewire\Livewire;
 use Lunar\Hub\Auth\Manifest;
 use Lunar\Hub\Auth\Permission;
 use Lunar\Hub\Facades\Menu;
+use App\Support\TranslatableString;
 use Modules\CrossSell\Http\Livewire\Admin\Index;
 use Modules\CrossSell\Http\Livewire\Components\ProductSearch;
 use Modules\CrossSell\Http\Livewire\Components\Tree;
@@ -72,11 +73,11 @@ class CrossSellServiceProvider extends ServiceProvider
 
         $catalogueGroup = $slot
             ->group('hub.catalogue')
-            ->name(__('adminhub::menu.sidebar.catalogue'));
+            ->name(new TranslatableString('adminhub::menu.sidebar.catalogue'));
 
         $catalogueGroup->addItem(function ($menuItem) {
             $menuItem
-                ->name(__('cross-sell::global.menu.recommended_products'))
+                ->name(new TranslatableString('cross-sell::global.menu.recommended_products'))
                 ->handle('hub.cross-sell')
                 ->route('hub.cross-sell.index')
                 ->icon('beaker');
