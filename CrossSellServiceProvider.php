@@ -7,7 +7,7 @@ use Livewire\Livewire;
 use Lunar\Hub\Auth\Manifest;
 use Lunar\Hub\Auth\Permission;
 use Lunar\Hub\Facades\Menu;
-use App\Support\TranslatableString;
+use Modules\AdminMenu\Support\TranslatableString;
 use Modules\CrossSell\Http\Livewire\Admin\Index;
 use Modules\CrossSell\Http\Livewire\Components\ProductSearch;
 use Modules\CrossSell\Http\Livewire\Components\Tree;
