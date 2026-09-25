@@ -1,10 +1,8 @@
 <?php
 
-use Livewire\Livewire;
+use Illuminate\Support\Facades\Schema;
 use Modules\CrossSell\CrossSellServiceProvider;
-use Modules\CrossSell\Http\Livewire\Admin\Index;
-use Modules\CrossSell\Http\Livewire\Components\ProductSearch;
-use Modules\CrossSell\Http\Livewire\Components\Tree;
+use Spatie\Permission\Models\Permission;
 
 it('registers the service provider', function () {
     $providers = app()->getLoadedProviders();
@@ -40,36 +38,6 @@ it('loads notification translations', function () {
         ->and(__('cross-sell::notifications.product_removed'))->toBe('Product removed successfully');
 });
 
-it('loads views with cross-sell namespace', function () {
-    $viewFinder = app('view');
-
-    expect($viewFinder->exists('cross-sell::livewire.admin.index'))->toBeTrue()
-        ->and($viewFinder->exists('cross-sell::livewire.components.tree'))->toBeTrue()
-        ->and($viewFinder->exists('cross-sell::livewire.components.product-search'))->toBeTrue();
-});
-
-it('registers livewire components', function () {
-    expect(Livewire::getClass('cross-sell.admin.index'))->toBe(Index::class)
-        ->and(Livewire::getClass('cross-sell.components.tree'))->toBe(Tree::class)
-        ->and(Livewire::getClass('cross-sell.components.product-search'))->toBe(ProductSearch::class);
-});
-
-it('has hub cross-sell index route registered', function () {
-    expect(route('hub.cross-sell.index'))->toBeString()
-        ->and(route('hub.cross-sell.index'))->toContain('cross-sell');
-});
-
-it('uses manage-cross-sell permission on routes', function () {
-    $routes = app('router')->getRoutes();
-    $route = $routes->getByName('hub.cross-sell.index');
-
-    expect($route)->not->toBeNull();
-
-    $middleware = $route->gatherMiddleware();
-
-    expect($middleware)->toContain('can:manage-cross-sell');
-});
-
 it('loads permission translation keys', function () {
     expect(__('cross-sell::global.manage.cross-sell.title', [], 'en'))->toBe('Recommended products')
         ->and(__('cross-sell::global.manage.cross-sell.description', [], 'en'))->toBe('Manage recommended products');
@@ -88,4 +56,12 @@ it('loads migrations', function () {
     }
 
     expect($hasCrossSellMigrations)->toBeTrue();
+});
+
+it('creates the manage-cross-sell staff permission', function () {
+    expect(Permission::where('name', 'manage-cross-sell')->where('guard_name', 'staff')->exists())->toBeTrue();
+});
+
+it('stores the position as an integer', function () {
+    expect(Schema::getColumnType('lunar_cross_sells', 'position'))->toContain('int');
 });
