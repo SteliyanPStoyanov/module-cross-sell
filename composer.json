@@ -1,6 +1,6 @@
 {
   "name": "modules/cross-sell",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Cross sell functionality for Lunar.",
   "authors": [
     {
@@ -8,6 +8,11 @@
       "homepage": "https://github.com/SteliyanPStoyanov"
     }
   ],
+  "require": {
+    "php": "^8.3",
+    "lunarphp/lunar": "^1.4",
+    "filament/filament": "^4.0"
+  },
   "autoload": {
     "psr-4": {
       "Modules\\CrossSell\\": ""
